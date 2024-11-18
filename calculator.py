@@ -7,23 +7,45 @@ class Calculator:
 
     def multiply(self, a, b):
         result = 0
-        for i in range(b+1):
-            result = self.add(result, a)
-        return result
+        is_negative = False
+
+        if (a < 0 and b > 0) or (a > 0 and b < 0):
+            is_negative = True
+
+        if a < 0:
+            a = -a  
+        if b < 0:
+            b = -b  
+        for _ in range(b):
+            result = result + a
+
+        return -result if is_negative else result
+
 
     def divide(self, a, b):
+        if b == 0:
+            raise ValueError("Cannot divide by zero")  
+
         result = 0
-        while a > b:
+        is_negative = False
+
+        if (a < 0 and b > 0) or (a > 0 and b < 0):
+            is_negative = True
+        a, b = -a if a < 0 else a, -b if b < 0 else b
+
+        while a >= b:  
             a = self.subtract(a, b)
             result += 1
-        return result
-    
+
+        return -result if is_negative else result
+
     def modulo(self, a, b):
-        while a <= b:
-            a = a-b
+        if b == 0:
+            raise ValueError("Cannot modulo by zero")  
+        while a >= b:  
+            a = self.subtract(a, b)
         return a
 
-# Example usage:
 if __name__ == "__main__":
     calc = Calculator()
     print("This is a simple calculator class!")
