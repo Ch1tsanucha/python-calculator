@@ -12,6 +12,12 @@ class TestCalculator(unittest.TestCase):
     def test_negative_add(self):
         self.assertEqual(self.calc.add(-1, -2), -3)
 
+    def test_subtract(self):
+        self.assertEqual(self.calc.subtract(4, 2), 2)
+    
+    def test_negative_subtract(self):
+        self.assertEqual(self.calc.subtract(2, 4), -2)
+
     def test_multiply(self):
         self.assertEqual(self.calc.multiply(1, 2), 2)
 
